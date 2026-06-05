@@ -1,53 +1,25 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 
-:root {
-    --fdf-blue: #16348C;
-    --fdf-blue-dk: #0A1D52;
-    --fdf-gold: #D9A521;
-    --fdf-gold-lt: #F1CE6E;
+/* Login page */
+.fi-simple-layout {
+    background: linear-gradient(135deg, #0A1D52 0%, #16348C 50%, #1E3FA0 100%) !important;
 }
-
-/* Login page overrides */
-.fi-login-page {
-    background: transparent !important;
+.fi-simple-layout .fi-simple-main-ctn {
+    background: rgba(255,255,255,0.06) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
 }
-.fi-login-page .fi-form-component-container {
-    --tw-ring-color: var(--fdf-blue) !important;
-}
-.fi-login-page .fi-btn-primary {
-    background-color: var(--fdf-gold) !important;
-    color: var(--fdf-blue-dk) !important;
-    font-weight: 700;
-}
-.fi-login-page .fi-btn-primary:hover {
-    background-color: var(--fdf-gold-lt) !important;
-}
-.fi-login-page .fi-input {
-    background: rgba(255,255,255,0.08) !important;
-    border-color: rgba(255,255,255,0.15) !important;
-    color: white !important;
-}
-.fi-login-page .fi-input::placeholder {
-    color: rgba(255,255,255,0.35) !important;
-}
-.fi-login-page .fi-input-wrp {
-    background: transparent !important;
-}
-.fi-login-page label {
-    color: rgba(255,255,255,0.7) !important;
-}
+.fi-simple-layout label { color: rgba(255,255,255,0.7) !important; }
+.fi-simple-layout .fi-input-wrp { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.15) !important; }
+.fi-simple-layout input { color: white !important; }
+.fi-simple-layout input::placeholder { color: rgba(255,255,255,0.35) !important; }
+.fi-simple-layout .fi-btn-primary { background: #D9A521 !important; color: #0A1D52 !important; font-weight: 700 !important; }
+.fi-simple-layout .fi-btn-primary:hover { background: #F1CE6E !important; }
+.fi-simple-layout h1, .fi-simple-layout p { color: white !important; }
 
 /* Sidebar accent */
-.fi-sidebar-nav-item-active {
-    border-left: 3px solid var(--fdf-gold) !important;
-}
+.fi-sidebar-item-active { border-inline-start: 3px solid #D9A521 !important; }
 
-/* Top bar subtle gold accent */
-.fi-topbar {
-    border-bottom: 2px solid var(--fdf-gold) !important;
-}
-
-/* Dashboard heading */
-.fi-header-heading {
-    font-family: 'Playfair Display', Georgia, serif !important;
-}
+/* Top bar gold line */
+.fi-topbar::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:#D9A521; }
+.fi-topbar { position: relative; }
