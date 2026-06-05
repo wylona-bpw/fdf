@@ -3,9 +3,16 @@
         <div class="flex items-center justify-between h-16 lg:h-20">
 
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0">
-                <span class="text-brand-gold font-display text-xl lg:text-2xl font-bold tracking-tight">AMFDF</span>
-                <span class="hidden sm:block text-white/80 text-sm font-light leading-tight">Mouvement des<br>Femmes de Foi</span>
+            <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0 group">
+                <img src="{{ asset('images/logo-amfdf-128.png') }}"
+                     alt="AMFDF"
+                     width="60" height="60"
+                     class="w-11 h-11 lg:w-14 lg:h-14 object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+                     loading="eager">
+                <span class="flex flex-col leading-tight">
+                    <span class="text-brand-gold font-display text-xl lg:text-2xl font-bold tracking-tight">AMFDF</span>
+                    <span class="hidden sm:block text-white/80 text-xs lg:text-sm font-light mt-0.5">Mouvement des Femmes de Foi</span>
+                </span>
             </a>
 
             <!-- Desktop nav -->

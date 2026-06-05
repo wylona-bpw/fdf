@@ -24,9 +24,17 @@
 
             {{-- About --}}
             <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-brand-gold font-display text-xl font-bold">AMFDF</span>
-                </div>
+                <a href="{{ route('home') }}" class="inline-flex items-center gap-3 mb-5 group">
+                    <img src="{{ asset('images/logo-amfdf-128.png') }}"
+                         alt="AMFDF"
+                         width="56" height="56"
+                         class="w-14 h-14 object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+                         loading="lazy">
+                    <span class="flex flex-col leading-tight">
+                        <span class="text-white font-display text-xl font-bold tracking-tight">AMFDF</span>
+                        <span class="text-brand-gold-lt text-[10px] uppercase tracking-widest font-semibold mt-1">Femmes de Foi</span>
+                    </span>
+                </a>
                 <p class="text-sm leading-relaxed text-white/50 mb-3">Association humanitaire &agrave; but non lucratif (loi 1901). Apporter soutien, espoir et assistance aux personnes les plus vuln&eacute;rables.</p>
                 <p class="text-brand-gold italic text-sm font-display">&laquo; Avec la foi, tout est possible &raquo;</p>
             </div>

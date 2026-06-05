@@ -4,18 +4,12 @@
     <div class="fdf-login-side__overlay"></div>
 
     <div class="fdf-login-side__inner">
-        {{-- Logo en haut --}}
+        {{-- Logo officiel --}}
         <div class="fdf-login-side__logo">
-            <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
-                <circle cx="45" cy="45" r="43" fill="none" stroke="#D9A521" stroke-width="1.5" opacity="0.9"/>
-                <circle cx="45" cy="45" r="35" fill="#D9A521" opacity="0.08"/>
-                <text x="45" y="56" text-anchor="middle"
-                      font-family="Playfair Display, Georgia, serif"
-                      font-size="28" font-weight="700"
-                      fill="#D9A521" letter-spacing="1">FDF</text>
-                <path d="M45 12 L47.4 18 L53.8 18.4 L48.9 22.6 L50.5 28.8 L45 25.4 L39.5 28.8 L41.1 22.6 L36.2 18.4 L42.6 18 Z"
-                      fill="#D9A521"/>
-            </svg>
+            <img src="{{ asset('images/logo-amfdf-256.png') }}"
+                 alt="AMFDF"
+                 width="140" height="140"
+                 class="fdf-login-side__logo-img">
         </div>
 
         <div class="fdf-login-side__title">
@@ -48,8 +42,5 @@
     </svg>
 </aside>
 
-{{-- Marque la page comme étant la page de login pour le CSS --}}
-<script>
-    document.documentElement.classList.add('fdf-is-login');
-</script>
+<script>document.documentElement.classList.add('fdf-is-login');</script>
 @endif

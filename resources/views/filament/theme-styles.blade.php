@@ -923,4 +923,83 @@ th.fi-ta-header-cell {
 .fi-wi-stats-overview-stat {
     animation: fdfFadeIn 0.4s ease-out;
 }
+
+/* ============================================================
+   LOGO DE MARQUE — Filament topbar
+   ============================================================ */
+.fdf-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    padding: 0.25rem 0;
+    transition: opacity 0.2s ease;
+}
+
+.fdf-brand-logo:hover {
+    opacity: 0.85;
+}
+
+.fdf-brand-logo__img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+    /* Petite ombre douce pour faire ressortir sur fond clair */
+    filter: drop-shadow(0 1px 2px rgba(8, 21, 56, 0.08));
+}
+
+.fdf-brand-logo__wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.fdf-brand-logo__name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--fdf-blue-dk, #0C1F54);
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+}
+
+.fdf-brand-logo__sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--fdf-gold-dk, #B0851A);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+/* Variante : quand le logo est dans la sidebar (fond bleu nuit) */
+.fi-sidebar .fdf-brand-logo__name {
+    color: #ffffff;
+}
+
+.fi-sidebar .fdf-brand-logo__sub {
+    color: #F0CD72;
+}
+
+/* Mobile : masquer le wordmark, garder le cercle */
+@media (max-width: 640px) {
+    .fdf-brand-logo__wordmark {
+        display: none;
+    }
+}
+
+/* ============================================================
+   LOGO DE LA PAGE LOGIN
+   ============================================================ */
+.fdf-login-side__logo-img {
+    width: 140px;
+    height: 140px;
+    display: block;
+    /* Halo doré subtil autour du logo */
+    filter: drop-shadow(0 4px 24px rgba(217, 165, 33, 0.25));
+}
+
 </style>
