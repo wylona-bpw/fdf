@@ -1,0 +1,16 @@
+# ============================================
+# FDF — amfdf.org (raccourcis de travail)
+# À sourcer dans ~/.bashrc :
+#   echo 'source ~/Dev/fdf/.fdf-aliases' >> ~/.bashrc
+# ============================================
+
+alias fdf-ssh='ssh fdf'
+alias fdf-deploy='ssh fdf "cd ~/fdf && bash deploy.sh"'
+alias fdf-deploy-nm='ssh fdf "cd ~/fdf && bash deploy.sh --no-migrate"'
+alias fdf-logs='ssh fdf "tail -100f ~/fdf/storage/logs/laravel.log"'
+alias fdf-down='ssh fdf "cd ~/fdf && php artisan down"'
+alias fdf-up='ssh fdf "cd ~/fdf && php artisan up"'
+alias fdf-tinker='ssh -t fdf "cd ~/fdf && php artisan tinker"'
+alias fdf-clear='ssh fdf "cd ~/fdf && php artisan optimize:clear"'
+alias fdf-migrate='ssh fdf "cd ~/fdf && php artisan migrate --force"'
+alias fdf-cache='ssh fdf "cd ~/fdf && php artisan config:cache && php artisan route:cache && php artisan view:cache"'
