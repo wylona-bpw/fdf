@@ -19,16 +19,16 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="min-h-screen flex flex-col" x-data="{ mobileMenu: false }">
 
     @include('components.header')
-
     <main class="flex-1">
         @include('components.flash-messages')
         @yield('content')
     </main>
 
     @include('components.footer')
-
+    <x-back-to-top />
 </body>
 </html>
