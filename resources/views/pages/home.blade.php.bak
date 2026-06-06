@@ -180,8 +180,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $statIcons[$stat['icon']] ?? $statIcons['box'] }}"/>
                             </svg>
                         </div>
-                        <div class="font-display text-4xl sm:text-5xl font-bold text-brand-blue-dk leading-none mb-2"
-                             data-counter="{{ $stat['value'] }}">
+                        <div class="font-display text-4xl sm:text-5xl font-bold text-brand-blue-dk leading-none mb-2">
                             {{ $stat['value'] }}
                         </div>
                         <div class="text-sm text-ink-grey font-medium">
