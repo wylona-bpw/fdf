@@ -77,7 +77,7 @@
 
                     {{-- Trust micro-statement --}}
                     <p class="text-white/50 text-xs italic">
-                        🔒 Don sécurisé via HelloAsso
+                        🔒 Don sécurisé via HelloAsso · Reçu fiscal disponible
                     </p>
                 </div>
 

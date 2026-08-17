@@ -29,6 +29,8 @@
             <p class="text-ink-grey text-sm mt-2">En attendant, contactez-nous &agrave; <strong>{{ setting('email', 'contact@amfdf.org') }}</strong>.</p>
         </div>
         @endif
+
+        <p class="text-ink-grey text-sm mt-4">Un re&ccedil;u fiscal, ouvrant droit &agrave; r&eacute;duction d'imp&ocirc;t, est disponible pour chaque don.</p>
     </div>
 </section>
 @endsection
