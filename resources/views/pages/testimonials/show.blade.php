@@ -3,9 +3,7 @@
 @section('description', \Illuminate\Support\Str::limit(strip_tags($testimonial->content), 155))
 
 @section('content')
-<section class="bg-brand-blue py-12 text-center">
-    <h1 class="font-display text-3xl md:text-4xl font-bold text-white">Témoignage</h1>
-</section>
+<x-page-hero title="Témoignage" />
 
 <section class="py-16">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">

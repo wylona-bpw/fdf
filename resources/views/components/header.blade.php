@@ -36,8 +36,8 @@
 
             <!-- Desktop CTAs -->
             <div class="hidden lg:flex items-center gap-3">
-                <a href="{{ route('volunteer.create') }}" class="px-4 py-2 text-sm font-semibold text-white border border-white/30 rounded-lg hover:bg-white/10 transition">Devenir b&eacute;n&eacute;vole</a>
-                <a href="{{ route('donate') }}" class="px-5 py-2 text-sm font-bold bg-brand-gold text-brand-blue-dk rounded-lg hover:bg-brand-gold-lt transition shadow-md">Faire un don</a>
+                <x-button :href="route('volunteer.create')" variant="secondary" size="sm">Devenir b&eacute;n&eacute;vole</x-button>
+                <x-button :href="route('donate')" variant="primary" size="sm">Faire un don</x-button>
             </div>
 
             <!-- Mobile toggle -->
@@ -60,8 +60,8 @@
                        class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">{{ $item['label'] }}</a>
                 @endforeach
                 <div class="flex flex-col gap-2 mt-4 px-3">
-                    <a href="{{ route('volunteer.create') }}" class="text-center px-4 py-2.5 font-semibold text-white border border-white/30 rounded-lg">Devenir b&eacute;n&eacute;vole</a>
-                    <a href="{{ route('donate') }}" class="text-center px-4 py-2.5 font-bold bg-brand-gold text-brand-blue-dk rounded-lg">Faire un don</a>
+                    <x-button :href="route('volunteer.create')" variant="secondary" size="sm" class="w-full">Devenir b&eacute;n&eacute;vole</x-button>
+                    <x-button :href="route('donate')" variant="primary" size="sm" class="w-full">Faire un don</x-button>
                 </div>
             </div>
         </div>

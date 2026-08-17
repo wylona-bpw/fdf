@@ -2,10 +2,7 @@
 @section('title', 'Devenir bénévole — AMFDF')
 
 @section('content')
-<section class="bg-brand-blue py-12 text-center">
-    <h1 class="font-display text-3xl md:text-4xl font-bold text-white">Devenir b&eacute;n&eacute;vole</h1>
-    <p class="text-brand-gold-lt italic font-display mt-2">&laquo; Femmes, rejoignez-nous en masse. &raquo;</p>
-</section>
+<x-page-hero title="Devenir bénévole" quote="Femmes, rejoignez-nous en masse." />
 
 <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -3,10 +3,7 @@
 @section('description', "Témoignages des bénévoles, bénéficiaires et partenaires du Mouvement des Femmes de Foi.")
 
 @section('content')
-<section class="bg-brand-blue py-12 text-center">
-    <h1 class="font-display text-3xl md:text-4xl font-bold text-white">Témoignages</h1>
-    <p class="text-white/60 mt-2">Ils nous font confiance</p>
-</section>
+<x-page-hero title="Témoignages" subtitle="Ils nous font confiance" />
 
 <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +27,11 @@
         </div>
         <div class="mt-12">{{ $testimonials->links() }}</div>
         @else
-        <p class="text-center text-ink-grey py-12">Les témoignages seront bientôt publiés ici.</p>
+        <x-empty-state icon="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        title="Les témoignages seront bientôt publiés ici"
+                        description="Vous êtes bénévole ou bénéficiaire ? Partagez votre expérience."
+                        action-label="Nous écrire"
+                        :action-href="route('contact.create')" />
         @endif
     </div>
 </section>

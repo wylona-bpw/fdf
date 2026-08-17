@@ -2,10 +2,7 @@
 @section('title', 'Faire un don — AMFDF')
 
 @section('content')
-<section class="bg-brand-blue py-12 text-center">
-    <h1 class="font-display text-3xl md:text-4xl font-bold text-white">Faire un don</h1>
-    <p class="text-white/60 mt-2">Chaque don compte et change des vies</p>
-</section>
+<x-page-hero title="Faire un don" subtitle="Chaque don compte et change des vies" />
 
 <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

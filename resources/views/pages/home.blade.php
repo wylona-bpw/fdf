@@ -58,21 +58,8 @@
 
                     {{-- CTAs --}}
                     <div class="flex flex-col sm:flex-row gap-3 mb-8">
-                        <a href="{{ route('donate') }}"
-                           class="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-brand-gold text-brand-blue-dk
-                                  font-bold rounded-lg hover:bg-brand-gold-lt transition shadow-xl
-                                  hover:shadow-2xl hover:-translate-y-0.5 transition-transform">
-                            <span>Faire un don</span>
-                            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                            </svg>
-                        </a>
-                        <a href="{{ route('volunteer.create') }}"
-                           class="inline-flex items-center justify-center gap-2 px-7 py-4 border-2 border-white/30
-                                  text-white font-semibold rounded-lg hover:bg-white/10 hover:border-white/50 transition">
-                            Devenir bénévole
-                        </a>
+                        <x-button :href="route('donate')" icon>Faire un don</x-button>
+                        <x-button :href="route('volunteer.create')" variant="secondary">Devenir bénévole</x-button>
                     </div>
 
                     {{-- Trust micro-statement --}}
@@ -258,15 +245,7 @@
                     </blockquote>
 
                     {{-- CTA --}}
-                    <a href="{{ route('association') }}"
-                       class="group inline-flex items-center gap-2 px-6 py-3 bg-brand-blue text-white font-semibold
-                              rounded-lg hover:bg-brand-blue-dk transition shadow-md">
-                        <span>Découvrir notre histoire</span>
-                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
-                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
+                    <x-button :href="route('association')" variant="blue" icon>Découvrir notre histoire</x-button>
                 </div>
 
                 {{-- Photo équipe --}}
@@ -299,15 +278,8 @@
     <section class="bg-paper-gold/30 py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center mb-12 lg:mb-14">
-                <x-section-kicker>Ce que nous faisons</x-section-kicker>
-                <h2 class="reveal font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-blue-dk">
-                    Nos actions sur le terrain
-                </h2>
-                <p class="text-ink-grey mt-3 max-w-2xl mx-auto">
-                    Chaque mois, nous intervenons avec une aide concrète et humaine. Cliquez pour découvrir chaque mission.
-                </p>
-            </div>
+            <x-section-header kicker="Ce que nous faisons" title="Nos actions sur le terrain"
+                subtitle="Chaque mois, nous intervenons avec une aide concrète et humaine. Cliquez pour découvrir chaque mission." />
 
             {{-- Grille d'actions cliquables --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
@@ -381,15 +353,8 @@
     <section class="bg-white py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center mb-12">
-                <x-section-kicker>Sur le terrain</x-section-kicker>
-                <h2 class="reveal font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-blue-dk">
-                    Nos dernières missions en images
-                </h2>
-                <p class="text-ink-grey mt-3 max-w-2xl mx-auto">
-                    Plongez dans nos albums photos. Chaque mission est une histoire vraie.
-                </p>
-            </div>
+            <x-section-header kicker="Sur le terrain" title="Nos dernières missions en images"
+                subtitle="Plongez dans nos albums photos. Chaque mission est une histoire vraie." />
 
             {{-- Grille des albums réels --}}
             @if($albums->count())
@@ -424,12 +389,7 @@
     <section class="bg-paper-gold/40 py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center mb-12">
-                <x-section-kicker>Ils témoignent</x-section-kicker>
-                <h2 class="reveal font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-blue-dk">
-                    Ils nous font confiance
-                </h2>
-            </div>
+            <x-section-header kicker="Ils témoignent" title="Ils nous font confiance" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($testimonials as $testimonial)
@@ -458,12 +418,7 @@
     <section class="bg-paper-blue/60 py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center mb-12">
-                <x-section-kicker>Ce qui nous anime</x-section-kicker>
-                <h2 class="reveal font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-blue-dk">
-                    Nos valeurs
-                </h2>
-            </div>
+            <x-section-header kicker="Ce qui nous anime" title="Nos valeurs" />
 
             @php
                 $values = [
@@ -517,15 +472,8 @@
     <section class="bg-white py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center mb-12">
-                <x-section-kicker>Notre engagement</x-section-kicker>
-                <h2 class="reveal font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-blue-dk">
-                    Transparence totale
-                </h2>
-                <p class="text-ink-grey mt-3 max-w-2xl mx-auto">
-                    Chaque don est suivi et orienté vers les actions de terrain. Nous vous rendons compte.
-                </p>
-            </div>
+            <x-section-header kicker="Notre engagement" title="Transparence totale"
+                subtitle="Chaque don est suivi et orienté vers les actions de terrain. Nous vous rendons compte." />
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto">
 
@@ -589,21 +537,8 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('donate') }}"
-                   class="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold text-brand-blue-dk
-                          font-bold rounded-lg hover:bg-brand-gold-lt transition shadow-xl
-                          hover:shadow-2xl hover:-translate-y-0.5 transition-transform">
-                    <span>Faire un don</span>
-                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-                <a href="{{ route('volunteer.create') }}"
-                   class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/40 text-white
-                          font-semibold rounded-lg hover:bg-white/10 hover:border-white/60 transition">
-                    Devenir bénévole
-                </a>
+                <x-button :href="route('donate')" icon>Faire un don</x-button>
+                <x-button :href="route('volunteer.create')" variant="secondary">Devenir bénévole</x-button>
             </div>
         </div>
     </section>

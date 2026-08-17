@@ -2,12 +2,7 @@
 @section('title', $album->title . ' — Galerie AMFDF')
 
 @section('content')
-<section class="bg-brand-blue py-12 text-center">
-    <h1 class="font-display text-3xl font-bold text-white">{{ $album->title }}</h1>
-    @if($album->event_date)
-    <p class="text-white/60 mt-1">{{ $album->event_date->isoFormat('D MMMM YYYY') }}@if($album->location) &bull; {{ $album->location }}@endif</p>
-    @endif
-</section>
+<x-page-hero :title="$album->title" :subtitle="$album->event_date ? $album->event_date->isoFormat('D MMMM YYYY') . ($album->location ? ' • ' . $album->location : '') : null" />
 
 <section class="py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
