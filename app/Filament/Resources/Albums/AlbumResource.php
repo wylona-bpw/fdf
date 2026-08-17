@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Albums;
 use App\Filament\Resources\Albums\Pages\CreateAlbum;
 use App\Filament\Resources\Albums\Pages\EditAlbum;
 use App\Filament\Resources\Albums\Pages\ListAlbums;
+use App\Filament\Resources\Albums\RelationManagers\ItemsRelationManager;
 use App\Filament\Resources\Albums\Schemas\AlbumForm;
 use App\Filament\Resources\Albums\Tables\AlbumsTable;
 use App\Models\Album;
@@ -18,7 +19,11 @@ class AlbumResource extends Resource
 {
     protected static ?string $model = Album::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Galerie';
+
+    protected static ?string $navigationLabel = 'Albums / missions';
 
     protected static ?string $recordTitleAttribute = 'title';
 
@@ -35,7 +40,7 @@ class AlbumResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ItemsRelationManager::class,
         ];
     }
 

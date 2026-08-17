@@ -15,8 +15,8 @@
                 « {{ $testimonial->content }} »
             </blockquote>
             <div class="flex items-center gap-4 pt-6 border-t border-stone-100">
-                @if($testimonial->photo)
-                    <img src="{{ asset($testimonial->photo) }}" alt="{{ $testimonial->name }}"
+                @if($testimonial->photo_url)
+                    <img src="{{ $testimonial->photo_url }}" alt="{{ $testimonial->name }}"
                          class="w-14 h-14 rounded-full object-cover shrink-0 border-2 border-brand-gold/20">
                 @else
                     <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-blue-dk to-brand-blue

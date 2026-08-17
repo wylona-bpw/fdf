@@ -18,7 +18,11 @@ class TestimonialResource extends Resource
 {
     protected static ?string $model = Testimonial::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleLeftRight;
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Contenu';
+
+    protected static ?string $navigationLabel = 'Témoignages';
 
     protected static ?string $recordTitleAttribute = 'name';
 

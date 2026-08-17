@@ -8,8 +8,8 @@
             name="Marie Kouam"
             role="Bénévole"
             location="Paris"
-            photo="images/testimonials/marie.jpg"
-            :href="route('testimonials.show', 'marie-kouam')"
+            :photo="$testimonial->photo"
+            :href="route('testimonials.show', $testimonial)"
         />
 --}}
 @props([
@@ -17,7 +17,7 @@
     'name' => '',
     'role' => '',
     'location' => '',
-    'photo' => null,         // chemin vers photo réelle (sinon avatar avec initiale)
+    'photo' => null,         // chemin relatif au disque "public" (ex: testimonials/xxx.jpg), sinon avatar avec initiale
     'href' => null,          // lien vers le témoignage complet (optionnel)
 ])
 
@@ -42,7 +42,7 @@
     <div class="flex items-center gap-4 pt-5 border-t border-stone-100">
         {{-- Photo ou avatar avec initiale --}}
         @if($photo)
-            <img src="{{ asset($photo) }}"
+            <img src="{{ asset('storage/' . $photo) }}"
                  alt="{{ $name }}"
                  class="w-12 h-12 rounded-full object-cover shrink-0 border-2 border-brand-gold/20">
         @else

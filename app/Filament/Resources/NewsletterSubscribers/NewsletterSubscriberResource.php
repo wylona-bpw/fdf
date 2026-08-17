@@ -20,7 +20,11 @@ class NewsletterSubscriberResource extends Resource
 {
     protected static ?string $model = NewsletterSubscriber::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAtSymbol;
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Demandes';
+
+    protected static ?string $navigationLabel = 'Newsletter';
 
     protected static ?string $recordTitleAttribute = 'email';
 

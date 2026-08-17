@@ -20,7 +20,11 @@ class VolunteerResource extends Resource
 {
     protected static ?string $model = Volunteer::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHandRaised;
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Demandes';
+
+    protected static ?string $navigationLabel = 'Bénévoles';
 
     protected static ?string $recordTitleAttribute = 'first_name';
 

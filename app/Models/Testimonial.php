@@ -20,4 +20,9 @@ class Testimonial extends Model
     {
         return $q->orderBy('sort_order');
     }
+
+    public function getPhotoUrlAttribute(): ?string
+    {
+        return $this->photo ? asset('storage/' . $this->photo) : null;
+    }
 }
