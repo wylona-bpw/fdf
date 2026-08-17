@@ -1,14 +1,12 @@
 {{--
-    PAGE D'ACCUEIL — refonte UX/UI complète
-    Basée sur la synthèse de 3 analyses expertes.
+    PAGE D'ACCUEIL — 8 blocs (réduite depuis 12, cf. audit UI/UX 2026 §6.1).
+    Aucune donnée de démonstration : chaque section s'appuie sur les vraies
+    données ($albums, $testimonials) ou disparaît si elles sont vides.
 
-    Variables attendues (toutes optionnelles — fallback de démo si null) :
-        $stats           : ['families' => 150, 'volunteers' => 50, 'actions' => 12, 'countries' => 5]
-        $latestMission   : Mission/Article du dernier reportage (voir composant)
-        $activeCampaign  : Campagne active (ou null si aucune)
-        $actions         : Collection d'actions de l'asso (max 6)
-        $recentMissions  : Collection des derniers albums galerie (max 4)
-        $testimonials    : Collection des témoignages (max 3)
+    Fournies par HomeController :
+        $albums       : Album::published() (le plus récent alimente aussi "Dernière mission")
+        $testimonials : Testimonial::published() (section masquée si vide)
+        $articles     : Article::published() (non affiché ici, réservé à /actualites)
 --}}
 @extends('layouts.app')
 
@@ -273,7 +271,7 @@
     </section>
 
     {{-- ════════════════════════════════════════════════════════════
-         NOS ACTIONS — 6 cartes cliquables vers pages détaillées
+         NOS ACTIONS — 3 axes principaux, détail complet sur /nos-actions
          ════════════════════════════════════════════════════════════ --}}
     <section class="bg-paper-gold/30 py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -281,14 +279,14 @@
             <x-section-header kicker="Ce que nous faisons" title="Nos actions sur le terrain"
                 subtitle="Chaque mois, nous intervenons avec une aide concrète et humaine. Cliquez pour découvrir chaque mission." />
 
-            {{-- Grille d'actions cliquables --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+            {{-- 3 axes principaux — le détail complet est sur /nos-actions --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
                 <x-action-card
                     icon="cake"
                     color="amber"
                     title="Distribution alimentaire"
                     subtitle="Familles & personnes âgées"
-                    description="Denrées de première nécessité distribuées chaque mois aux familles en difficulté."
+                    description="Denrées de première nécessité distribuées lors de nos missions de terrain."
                     href="{{ route('actions') }}" />
 
                 <x-action-card
@@ -300,35 +298,11 @@
                     href="{{ route('actions') }}" />
 
                 <x-action-card
-                    icon="shopping-bag"
-                    color="pink"
-                    title="Vêtements"
-                    subtitle="Toute personne vulnérable"
-                    description="Collecte et distribution de vêtements sans distinction."
-                    href="{{ route('actions') }}" />
-
-                <x-action-card
                     icon="hand"
                     color="rose"
                     title="Accompagnement moral"
                     subtitle="Veuves & personnes isolées"
                     description="Visites, écoute et présence pour rompre la solitude."
-                    href="{{ route('actions') }}" />
-
-                <x-action-card
-                    icon="smile"
-                    color="green"
-                    title="Soutien au handicap"
-                    subtitle="Personnes en situation de handicap"
-                    description="Aide matérielle et accompagnement au quotidien."
-                    href="{{ route('actions') }}" />
-
-                <x-action-card
-                    icon="heart"
-                    color="blue"
-                    title="Solidarité internationale"
-                    subtitle="Communautés locales"
-                    description="Opérations de solidarité dans les pays d'origine et au-delà."
                     href="{{ route('actions') }}" />
             </div>
 
@@ -343,41 +317,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    {{-- ════════════════════════════════════════════════════════════
-         GALERIE — albums cliquables
-         ════════════════════════════════════════════════════════════ --}}
-    <section class="bg-white py-16 lg:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <x-section-header kicker="Sur le terrain" title="Nos dernières missions en images"
-                subtitle="Plongez dans nos albums photos. Chaque mission est une histoire vraie." />
-
-            {{-- Grille des albums réels --}}
-            @if($albums->count())
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
-                @foreach($albums as $album)
-                    <x-mission-card
-                        title="{{ $album->title }}"
-                        location="{{ $album->location }}"
-                        date="{{ $album->event_date?->isoFormat('MMMM YYYY') }}"
-                        photo="storage/{{ $album->cover_image }}"
-                        :href="route('gallery.show', $album->slug)"
-                        :photoCount="$album->items_count" />
-                @endforeach
-            </div>
-            @else
-            <p class="text-center text-ink-grey">La galerie sera bientôt disponible.</p>
-            @endif
-
-            {{-- CTA --}}
-            <div class="text-center mt-12">
-                <x-teaser-link :href="route('gallery.index')">
-                    Explorer toute la galerie
-                </x-teaser-link>
             </div>
         </div>
     </section>
@@ -411,60 +350,6 @@
         </div>
     </section>
     @endif
-
-    {{-- ════════════════════════════════════════════════════════════
-         NOS VALEURS — réorganisé en 3+2 (au lieu de 5 en ligne)
-         ════════════════════════════════════════════════════════════ --}}
-    <section class="bg-paper-blue/60 py-16 lg:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <x-section-header kicker="Ce qui nous anime" title="Nos valeurs" />
-
-            @php
-                $values = [
-                    ['icon' => 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', 'title' => 'Solidarité', 'description' => "Agir ensemble pour ceux qui en ont besoin."],
-                    ['icon' => 'M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11', 'title' => 'Entraide', 'description' => "Tendre la main, sans rien attendre en retour."],
-                    ['icon' => 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Compassion', 'description' => "Ressentir l'autre comme soi-même."],
-                    ['icon' => 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Humanité', 'description' => "Chaque être mérite dignité."],
-                    ['icon' => 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z', 'title' => 'Foi & Espérance', 'description' => "Croire que le meilleur est possible."],
-                ];
-            @endphp
-
-            {{-- Top row : 3 cartes centrées --}}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto mb-5">
-                @foreach(array_slice($values, 0, 3) as $value)
-                    <div class="group bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-xl
-                                transition-all duration-300 hover:-translate-y-1 border border-stone-100">
-                        <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-paper-blue flex items-center justify-center
-                                    transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $value['icon'] }}"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-display text-xl font-bold text-brand-blue-dk mb-2">{{ $value['title'] }}</h3>
-                        <p class="text-sm text-ink-grey">{{ $value['description'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-
-            {{-- Bottom row : 2 cartes centrées --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-3xl mx-auto">
-                @foreach(array_slice($values, 3, 2) as $value)
-                    <div class="group bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-xl
-                                transition-all duration-300 hover:-translate-y-1 border border-stone-100">
-                        <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-paper-gold flex items-center justify-center
-                                    transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                            <svg class="w-7 h-7 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $value['icon'] }}"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-display text-xl font-bold text-brand-blue-dk mb-2">{{ $value['title'] }}</h3>
-                        <p class="text-sm text-ink-grey">{{ $value['description'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
 
     {{-- ════════════════════════════════════════════════════════════
          TRANSPARENCE — avec liens vers la vraie page transparence
@@ -540,18 +425,14 @@
                 <x-button :href="route('donate')" icon>Faire un don</x-button>
                 <x-button :href="route('volunteer.create')" variant="secondary">Devenir bénévole</x-button>
             </div>
-        </div>
-    </section>
 
-    {{-- ════════════════════════════════════════════════════════════
-         VERSET BIBLIQUE — moment spirituel
-         ════════════════════════════════════════════════════════════ --}}
-    <section class="bg-brand-blue-dk py-14 text-white relative">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <blockquote class="font-display italic text-2xl lg:text-3xl leading-relaxed mb-3">
-                « Jésus est le chemin, la vérité et la vie »
-            </blockquote>
-            <cite class="not-italic text-brand-gold-lt text-sm font-medium tracking-wider">— Jean 14:6</cite>
+            {{-- Moment spirituel — coda, plutôt qu'une section séparée --}}
+            <div class="mt-14 pt-10 border-t border-white/10">
+                <blockquote class="font-display italic text-xl lg:text-2xl leading-relaxed mb-3">
+                    « Jésus est le chemin, la vérité et la vie »
+                </blockquote>
+                <cite class="not-italic text-brand-gold-lt text-sm font-medium tracking-wider">— Jean 14:6</cite>
+            </div>
         </div>
     </section>
 
