@@ -12,15 +12,16 @@ class PageController extends Controller
 
         // Choix du template Blade selon le champ `template`
         $view = match ($page->template) {
-            'association' => 'pages.association',
-            'actions'     => 'pages.actions',
-            'donate'      => 'pages.donate',
-            default       => 'pages.default',
+            'association'  => 'pages.association',
+            'actions'      => 'pages.actions',
+            'donate'       => 'pages.donate',
+            'transparency' => 'pages.transparency',
+            default        => 'pages.default',
         };
 
         $data = compact('page');
 
-        if ($page->template === 'actions') {
+        if (in_array($page->template, ['actions', 'transparency'], true)) {
             $data['albums'] = Album::published()->ordered()->take(4)->get();
         }
 
