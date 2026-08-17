@@ -277,7 +277,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <x-section-header kicker="Ce que nous faisons" title="Nos actions sur le terrain"
-                subtitle="Chaque mois, nous intervenons avec une aide concrète et humaine. Cliquez pour découvrir chaque mission." />
+                subtitle="Nous intervenons avec une aide concrète et humaine. Cliquez pour découvrir chaque mission." />
 
             {{-- 3 axes principaux — le détail complet est sur /nos-actions --}}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">

@@ -32,6 +32,38 @@
     </div>
 </section>
 
+@if(setting('bank_iban'))
+{{-- Don par virement bancaire --}}
+<section class="bg-paper-gold/30 py-16">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <x-section-header kicker="Autre moyen" title="Don par virement bancaire" />
+        <div class="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 sm:p-8">
+            <dl class="divide-y divide-stone-100 text-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-3">
+                    <dt class="w-40 shrink-0 text-ink-grey">Titulaire</dt>
+                    <dd class="font-semibold text-brand-blue-dk">{{ setting('bank_holder') }}</dd>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-3">
+                    <dt class="w-40 shrink-0 text-ink-grey">Banque</dt>
+                    <dd class="font-semibold text-brand-blue-dk">{{ setting('bank_name') }}</dd>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-3">
+                    <dt class="w-40 shrink-0 text-ink-grey">IBAN</dt>
+                    <dd class="font-semibold text-brand-blue-dk font-mono tracking-wide">{{ setting('bank_iban') }}</dd>
+                </div>
+                @if(setting('bank_bic'))
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-3">
+                    <dt class="w-40 shrink-0 text-ink-grey">BIC</dt>
+                    <dd class="font-semibold text-brand-blue-dk font-mono tracking-wide">{{ setting('bank_bic') }}</dd>
+                </div>
+                @endif
+            </dl>
+            <p class="text-ink-grey text-xs mt-5">Pensez &agrave; nous <a href="{{ route('contact.create') }}" class="text-brand-blue underline hover:text-brand-gold">contacter</a> apr&egrave;s votre virement afin que nous puissions vous adresser votre re&ccedil;u fiscal.</p>
+        </div>
+    </div>
+</section>
+@endif
+
 {{-- Où va votre don --}}
 <section class="bg-paper-blue/40 py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

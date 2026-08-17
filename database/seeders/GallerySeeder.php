@@ -15,9 +15,9 @@ class GallerySeeder extends Seeder
             ['slug' => 'orphelinat-misericorde-divine-2026'],
             [
                 'title'        => 'Distribution alimentaire — Orphelinat La Miséricorde Divine',
-                'description'  => "En août 2026, l'équipe du Mouvement des Femmes de Foi s'est rendue à l'orphelinat La Miséricorde Divine, à Yaoundé-Ayéné (Cameroun), pour une distribution de denrées de première nécessité. 50 enfants ont été accompagnés lors de cette mission.",
+                'description'  => "En avril 2026, l'équipe du Mouvement des Femmes de Foi s'est rendue à l'orphelinat La Miséricorde Divine, à Yaoundé-Ayéné (Cameroun), pour une distribution de denrées de première nécessité. 50 enfants ont été accompagnés lors de cette mission.",
                 'cover_image'  => "{$base}/distribution-17.jpg",
-                'event_date'   => '2026-08-03',
+                'event_date'   => '2026-04-03',
                 'location'     => 'Yaoundé-Ayéné, Cameroun',
                 'is_published' => true,
                 'sort_order'   => 1,

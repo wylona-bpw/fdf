@@ -32,6 +32,12 @@ class SettingsSeeder extends Seeder
             ['key' => 'donation_url',      'value' => '', 'group' => 'donation', 'type' => 'text',     'label' => 'Lien HelloAsso / dons'],
             ['key' => 'donation_text',     'value' => "Votre générosité nous permet d'agir concrètement auprès des plus vulnérables, au Cameroun comme en France. Chaque don sert directement une mission de terrain.", 'group' => 'donation', 'type' => 'textarea', 'label' => 'Texte page dons'],
 
+            // Don par virement bancaire
+            ['key' => 'bank_holder',       'value' => 'Mouvement des Femmes de Foi', 'group' => 'donation', 'type' => 'text', 'label' => 'Titulaire du compte'],
+            ['key' => 'bank_name',         'value' => 'Crédit Mutuel', 'group' => 'donation', 'type' => 'text', 'label' => 'Banque'],
+            ['key' => 'bank_iban',         'value' => 'FR76 1027 8063 6800 0216 2980 101', 'group' => 'donation', 'type' => 'text', 'label' => 'IBAN'],
+            ['key' => 'bank_bic',          'value' => 'CMCIFR2A', 'group' => 'donation', 'type' => 'text', 'label' => 'BIC'],
+
             // Chiffres d'impact (bandeau home) — mis à jour après chaque mission
             ['key' => 'stat_people_helped', 'value' => '50', 'group' => 'stats', 'type' => 'text', 'label' => 'Personnes aidées'],
             ['key' => 'stat_volunteers',    'value' => '20', 'group' => 'stats', 'type' => 'text', 'label' => 'Bénévoles actifs'],

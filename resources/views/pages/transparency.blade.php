@@ -79,7 +79,7 @@
                  alt="Distribution à l'orphelinat La Miséricorde Divine"
                  class="sm:col-span-2 w-full h-48 sm:h-full object-cover" loading="lazy">
             <div class="sm:col-span-3 p-7">
-                <p class="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">Août 2026 · Yaoundé-Ayéné, Cameroun</p>
+                <p class="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">Avril 2026 · Yaoundé-Ayéné, Cameroun</p>
                 <h3 class="font-display text-lg font-bold text-brand-blue-dk mb-2">Où est parti le dernier don ?</h3>
                 <p class="text-sm text-ink-grey mb-4">Denrées de première nécessité (riz, œufs, boissons, produits d'hygiène) pour 50 enfants de l'orphelinat La Miséricorde Divine.</p>
                 <x-teaser-link :href="route('gallery.show', 'orphelinat-misericorde-divine-2026')">Voir le reportage</x-teaser-link>

@@ -72,7 +72,7 @@
                     Orphelinat La Miséricorde Divine
                 </h2>
                 <p class="text-ink-dark leading-relaxed mb-6">
-                    En août 2026, notre équipe s'est rendue à l'orphelinat La Miséricorde Divine, à Yaoundé-Ayéné
+                    En avril 2026, notre équipe s'est rendue à l'orphelinat La Miséricorde Divine, à Yaoundé-Ayéné
                     (Cameroun), pour une distribution de denrées de première nécessité : riz, œufs, boissons et
                     produits d'hygiène. <strong>50 enfants</strong> ont été accompagnés lors de cette mission.
                 </p>

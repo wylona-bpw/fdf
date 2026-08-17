@@ -34,7 +34,7 @@
                 L'association en action
             </h2>
             <p class="text-ink-grey mt-3 max-w-2xl mx-auto">
-                Chaque mois, nous menons des missions concrètes sur le terrain. Voici la dernière.
+                Nous menons des missions concrètes sur le terrain. Voici la dernière.
             </p>
         </div>
 
