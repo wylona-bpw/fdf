@@ -44,6 +44,10 @@ html { scroll-behavior: smooth; }
 body { font-family: var(--font-body); color: var(--color-ink-dark); }
 h1, h2, h3, h4 { font-family: var(--font-display); }
 
+/* ---- Alpine x-cloak : masque tant qu'Alpine n'a pas encore initialisé
+   (évite le flash d'éléments qui ne devraient être visibles qu'au clic) ---- */
+[x-cloak] { display: none !important; }
+
 /* ---- Focus clavier — une seule règle cohérente pour tout le site
    (cartes, liens, boutons, champs) plutôt que des styles focus épars ---- */
 a:focus-visible,

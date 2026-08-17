@@ -52,11 +52,12 @@ class GallerySeeder extends Seeder
         }
 
         GalleryItem::create([
-            'album_id'   => $album->id,
-            'type'       => 'video',
-            'video_url'  => asset("storage/{$base}/reportage.mp4"),
-            'caption'    => 'Reportage vidéo de la mission',
-            'sort_order' => $sortOrder++,
+            'album_id'        => $album->id,
+            'type'            => 'video',
+            'video_url'       => asset("storage/{$base}/reportage.mp4"),
+            'thumbnail_path'  => "{$base}/reportage-poster.jpg",
+            'caption'         => 'Reportage vidéo de la mission',
+            'sort_order'      => $sortOrder++,
         ]);
     }
 }
