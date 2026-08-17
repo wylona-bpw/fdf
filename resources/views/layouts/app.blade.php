@@ -56,8 +56,14 @@
 
 <body class="min-h-screen flex flex-col" x-data="{ mobileMenu: false }">
 
+    <a href="#main-content"
+       class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100]
+              focus:px-4 focus:py-2 focus:rounded-lg focus:bg-brand-gold focus:text-brand-blue-dk focus:font-semibold">
+        Aller au contenu
+    </a>
+
     @include('components.header')
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
         @include('components.flash-messages')
         @yield('content')
     </main>

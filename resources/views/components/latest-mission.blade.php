@@ -2,13 +2,10 @@
     Section "Dernière mission" — vitrine du dernier travail effectué.
     Crée un sentiment de "asso vivante et active".
 
-    Usage avec données:
+    Usage:
         <x-latest-mission :mission="$latestMission" />
 
-    Usage sans données (fallback démo):
-        <x-latest-mission />
-
-    Structure du modèle attendu:
+    Structure attendue (null = section masquée, jamais de fausses données) :
         $latestMission = [
             'title' => 'Distribution de fournitures scolaires',
             'kicker' => 'Mai 2026 · Yaoundé',
@@ -26,22 +23,7 @@
     'mission' => null,
 ])
 
-@php
-    // Fallback de démo pour structurer la page tant que la donnée n'est pas fournie
-    $mission = $mission ?? [
-        'title' => 'Distribution de fournitures scolaires',
-        'kicker' => 'Mai 2026 · Yaoundé, Cameroun',
-        'description' => "En partenariat avec l'école primaire de Mvog-Ada, nous avons accompagné les enfants pour la rentrée. Cartables, cahiers, stylos — chaque enfant a pu reprendre l'école dans la dignité.",
-        'photo' => null,
-        'stats' => [
-            ['value' => '45', 'label' => 'enfants accompagnés'],
-            ['value' => '120', 'label' => 'cahiers distribués'],
-            ['value' => '12', 'label' => 'bénévoles mobilisés'],
-        ],
-        'href' => '#',
-    ];
-@endphp
-
+@if($mission)
 <section class="bg-white py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -122,3 +104,4 @@
         </div>
     </div>
 </section>
+@endif

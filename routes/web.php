@@ -7,6 +7,7 @@ use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,13 +52,11 @@ Route::get('/galerie/{slug}',  [GalleryController::class, 'show'])->name('galler
 
 /*
 |--------------------------------------------------------------------------
-| 🆕 Témoignages — utilise PageController par défaut, à remplacer par
-|     un TestimonialController dédié quand le modèle sera prêt (déjà
-|     présent dans Filament — voir resources/Testimonials).
+| Témoignages
 |--------------------------------------------------------------------------
 */
-Route::get('/temoignages',         [PageController::class, 'show'])->name('testimonials.index')->defaults('slug', 'temoignages');
-Route::get('/temoignages/{slug}',  [PageController::class, 'show'])->name('testimonials.show');
+Route::get('/temoignages',              [TestimonialController::class, 'index'])->name('testimonials.index');
+Route::get('/temoignages/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show');
 
 /*
 |--------------------------------------------------------------------------

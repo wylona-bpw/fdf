@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "./additions.css";
 
 @theme {
   --color-brand-blue: #16348C;

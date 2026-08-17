@@ -52,7 +52,7 @@
             <div>
                 <h3 class="font-semibold text-ink-dark mb-1">T&eacute;l&eacute;phone / WhatsApp</h3>
                 @if(setting('whatsapp_number'))
-                <p><a href="https://wa.me/{{ setting('whatsapp_number') }}" class="hover:text-brand-blue transition" target="_blank">{{ setting('phone') }}</a></p>
+                <p><a href="https://wa.me/{{ setting('whatsapp_number') }}" class="hover:text-brand-blue transition" target="_blank" rel="noopener noreferrer">{{ setting('phone') }}</a></p>
                 @else
                 <p>{{ setting('phone', '—') }}</p>
                 @endif

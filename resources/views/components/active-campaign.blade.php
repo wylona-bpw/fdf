@@ -22,25 +22,9 @@
 --}}
 @props([
     'campaign' => null,
-    'demo' => false,  // forcer l'affichage en mode démo pour développement
 ])
 
 @php
-    // Mode démo pour visualiser la section tant qu'il n'y a pas de vraie campagne
-    if (!$campaign && $demo) {
-        $campaign = [
-            'title' => 'Cantine scolaire de Yaoundé',
-            'description' => "Permettre à 50 enfants d'avoir un repas chaud chaque jour de classe jusqu'à la fin de l'année scolaire.",
-            'photo' => null,
-            'goal' => 5000,
-            'raised' => 3650,
-            'donors' => 87,
-            'days_left' => 27,
-            'href' => '#',
-            'currency' => '€',
-        ];
-    }
-
     if (!$campaign) return;
 
     $percent = min(100, round(($campaign['raised'] / max(1, $campaign['goal'])) * 100));

@@ -1,3 +1,13 @@
+@php
+    $navItems = [
+        ['route' => 'home',            'label' => 'Accueil'],
+        ['route' => 'association',     'label' => "L'association"],
+        ['route' => 'actions',         'label' => 'Nos actions'],
+        ['route' => 'articles.index',  'label' => 'Actualités'],
+        ['route' => 'gallery.index',   'label' => 'Galerie'],
+        ['route' => 'contact.create',  'label' => 'Contact'],
+    ];
+@endphp
 <header class="bg-brand-blue sticky top-0 z-50 shadow-lg">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 lg:h-20">
@@ -17,12 +27,11 @@
 
             <!-- Desktop nav -->
             <div class="hidden lg:flex items-center gap-1">
-                <a href="{{ route('home') }}" class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">Accueil</a>
-                <a href="{{ route('association') }}" class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">L'association</a>
-                <a href="{{ route('actions') }}" class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">Nos actions</a>
-                <a href="{{ route('articles.index') }}" class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">Actualit&eacute;s</a>
-                <a href="{{ route('gallery.index') }}" class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">Galerie</a>
-                <a href="{{ route('contact.create') }}" class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">Contact</a>
+                @foreach($navItems as $item)
+                    <a href="{{ route($item['route']) }}"
+                       @if(request()->routeIs($item['route'])) aria-current="page" @endif
+                       class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">{{ $item['label'] }}</a>
+                @endforeach
             </div>
 
             <!-- Desktop CTAs -->
@@ -32,21 +41,24 @@
             </div>
 
             <!-- Mobile toggle -->
-            <button @click="mobileMenu = !mobileMenu" class="lg:hidden text-white p-2" aria-label="Menu">
-                <svg x-show="!mobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                <svg x-show="mobileMenu" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <button @click="mobileMenu = !mobileMenu"
+                    class="lg:hidden text-white p-2"
+                    :aria-label="mobileMenu ? 'Fermer le menu' : 'Ouvrir le menu'"
+                    :aria-expanded="mobileMenu.toString()"
+                    aria-controls="mobile-menu">
+                <svg x-show="!mobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <svg x-show="mobileMenu" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
 
         <!-- Mobile menu -->
-        <div x-show="mobileMenu" x-cloak x-transition.opacity class="lg:hidden pb-6 border-t border-white/10">
+        <div id="mobile-menu" x-show="mobileMenu" x-cloak x-transition.opacity class="lg:hidden pb-6 border-t border-white/10">
             <div class="flex flex-col gap-1 pt-4">
-                <a href="{{ route('home') }}" class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">Accueil</a>
-                <a href="{{ route('association') }}" class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">L'association</a>
-                <a href="{{ route('actions') }}" class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">Nos actions</a>
-                <a href="{{ route('articles.index') }}" class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">Actualit&eacute;s</a>
-                <a href="{{ route('gallery.index') }}" class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">Galerie</a>
-                <a href="{{ route('contact.create') }}" class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">Contact</a>
+                @foreach($navItems as $item)
+                    <a href="{{ route($item['route']) }}"
+                       @if(request()->routeIs($item['route'])) aria-current="page" @endif
+                       class="px-3 py-2 text-white/90 hover:text-brand-gold-lt transition">{{ $item['label'] }}</a>
+                @endforeach
                 <div class="flex flex-col gap-2 mt-4 px-3">
                     <a href="{{ route('volunteer.create') }}" class="text-center px-4 py-2.5 font-semibold text-white border border-white/30 rounded-lg">Devenir b&eacute;n&eacute;vole</a>
                     <a href="{{ route('donate') }}" class="text-center px-4 py-2.5 font-bold bg-brand-gold text-brand-blue-dk rounded-lg">Faire un don</a>

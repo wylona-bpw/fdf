@@ -1,9 +1,4 @@
-/* ============================================================
-   AJOUTS au fichier app.css existant
-   Copier-coller à la fin de ton fichier CSS.
-   ============================================================ */
-
-/* ---- Progress bar shimmer (effet brillance qui glisse) ---- */
+/* ---- Progress bar shimmer (barre de progression des campagnes) ---- */
 @keyframes shimmer {
     0%   { transform: translateX(-100%); }
     100% { transform: translateX(400%); }
@@ -12,74 +7,12 @@
     animation: shimmer 2.5s ease-in-out infinite;
 }
 
-/* ---- Pulse "live" dot (badges urgents, "en cours") ---- */
-@keyframes pulseLive {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.6; transform: scale(0.85); }
-}
-.pulse-live {
-    animation: pulseLive 1.8s ease-in-out infinite;
-}
-
-/* ---- Card hover lift refiné (plus prononcé pour les cartes principales) ---- */
-.hover-lift-lg {
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hover-lift-lg:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px -8px rgba(10, 29, 82, 0.18),
-                0 8px 16px -4px rgba(10, 29, 82, 0.08);
-}
-
-/* ---- Reveal : ne pas masquer si JS désactivé ----
-   Si le JS n'a pas tourné, on affiche quand même tout après 2s
-   (fallback graceful degradation) */
+/* ---- Respecter la préférence "réduire les animations" du visiteur ---- */
 @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-/* Si l'utilisateur n'a pas JS du tout, fallback après 2s */
-.no-js .reveal {
-    animation: fallbackReveal 0.001s linear 2s forwards;
-}
-@keyframes fallbackReveal {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ---- Highlight section actuelle (utile pour le nav scroll-spy plus tard) ---- */
-.scroll-mt-header { scroll-margin-top: 5rem; }
-
-/* ---- Image placeholder hover shine ---- */
-.img-placeholder-shine {
-    position: relative;
-    overflow: hidden;
-}
-.img-placeholder-shine::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.7s ease-in-out;
-}
-.img-placeholder-shine:hover::after {
-    left: 150%;
-}
-
-/* ---- Sticky mobile CTA : safe area pour iOS notch ---- */
-.sticky-mobile-safe {
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-}
-
-/* ---- Counter "live" pour stats ---- */
-.live-indicator {
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: var(--color-brand-gold);
-    border-radius: 50%;
-    margin-right: 0.5rem;
-    animation: pulseLive 1.8s ease-in-out infinite;
+    .reveal, .progress-shimmer {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

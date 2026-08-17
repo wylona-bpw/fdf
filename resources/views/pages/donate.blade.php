@@ -18,7 +18,7 @@
         </div>
 
         @if(setting('donation_url'))
-        <a href="{{ setting('donation_url') }}" target="_blank"
+        <a href="{{ setting('donation_url') }}" target="_blank" rel="noopener noreferrer"
            class="inline-block px-10 py-4 bg-brand-gold text-brand-blue-dk font-bold text-lg rounded-xl hover:bg-brand-gold-lt transition shadow-lg">
             Faire un don en ligne
         </a>
