@@ -61,7 +61,7 @@
                     </div>
 
                     {{-- Trust micro-statement --}}
-                    <p class="text-white/50 text-xs italic">
+                    <p class="text-white/70 text-xs italic">
                         🔒 Don sécurisé via HelloAsso · Reçu fiscal disponible
                     </p>
                 </div>
@@ -76,7 +76,7 @@
                                   shadow-2xl hover:shadow-brand-gold/20 hover:shadow-2xl transition-all duration-500">
                             <img src="{{ asset('storage/gallery/orphelinat-misericorde-divine-2026/distribution-17.jpg') }}"
                                  alt="Distribution de denrées alimentaires à l'orphelinat La Miséricorde Divine"
-                                 class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+                                 class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dk via-brand-blue-dk/40 to-transparent opacity-90"></div>
                             <div class="absolute inset-0 flex flex-col justify-end p-6">
                                 <span class="text-brand-gold-lt text-xs font-bold uppercase tracking-wider mb-1">Découvrir</span>

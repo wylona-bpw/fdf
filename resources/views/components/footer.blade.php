@@ -90,9 +90,9 @@
                     &laquo; J&eacute;sus est le chemin, la v&eacute;rit&eacute; et la vie &raquo;
                     <cite class="not-italic text-brand-gold-lt text-xs mt-1 block">&mdash; Jean 14:6</cite>
                 </blockquote>
-                <div class="text-xs text-white/30 space-y-1">
-                    <p>Association loi 1901</p>
-                    <p>Si&egrave;ge : France / International</p>
+                <div class="text-xs text-white/60 space-y-1">
+                    <p>Association loi 1901 &middot; RNA {{ setting('rna_number', 'W784011796') }}</p>
+                    <p>Si&egrave;ge : {{ setting('address', 'France / International') }}</p>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
 
     {{-- Bottom bar --}}
     <div class="border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/60">
             <p>&copy; {{ date('Y') }} Mouvement des Femmes de Foi &mdash; Tous droits r&eacute;serv&eacute;s.</p>
             <div class="flex gap-4">
                 <a href="{{ route('legal') }}" class="hover:text-white/70 transition">Mentions l&eacute;gales</a>

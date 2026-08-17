@@ -41,6 +41,15 @@
                     class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition">{{ old('message') }}</textarea>
                 @error('message')<p class="text-brand-red text-sm mt-1">{{ $message }}</p>@enderror
             </div>
+            <div class="flex items-start gap-3">
+                <input id="consent" type="checkbox" name="consent" required
+                    class="mt-1 w-4 h-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue/40">
+                <label for="consent" class="text-sm text-ink-grey">
+                    J'accepte que mes informations soient utilisées pour traiter ma demande, conformément à la
+                    <a href="{{ route('privacy') }}" class="text-brand-blue underline hover:text-brand-gold">politique de confidentialité</a>. *
+                </label>
+                @error('consent')<p class="text-brand-red text-sm mt-1">{{ $message }}</p>@enderror
+            </div>
             <button type="submit" class="px-8 py-3 bg-brand-blue text-white font-semibold rounded-xl hover:bg-brand-blue-dk transition shadow-md">Envoyer le message</button>
         </form>
 

@@ -20,7 +20,12 @@ class ContactController extends Controller
             'phone'   => 'nullable|string|max:30',
             'subject' => 'nullable|string|max:200',
             'message' => 'required|string|max:5000',
+            'consent' => 'accepted',
+        ], [
+            'consent.accepted' => 'Merci d\'accepter la politique de confidentialité pour continuer.',
         ]);
+
+        unset($data['consent']);
 
         Contact::create($data);
 

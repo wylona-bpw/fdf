@@ -149,6 +149,8 @@ else
 fi
 
 # --- Liens publics (Méthode 2 : public_html → public/) ---
+# NE JAMAIS lier index.php : il a des chemins ../fdf/... propres à ce serveur
+# (public_html et fdf sont frères, pas imbriqués) — voir GUIDE_LWS_cPanel.md §8.
 if [ "$REBUILD_PUBLIC_SYMLINKS" = true ] && [ -d "$PUBLIC_HTML" ]; then
   step "Mise à jour des liens dans public_html"
   if [ -d "$APP_DIR/public/build" ]; then
@@ -159,6 +161,19 @@ if [ "$REBUILD_PUBLIC_SYMLINKS" = true ] && [ -d "$PUBLIC_HTML" ]; then
   fi
   ln -sfn "$APP_DIR/storage/app/public" "$PUBLIC_HTML/storage"
   ok "Lien storage/ → storage/app/public"
+
+  for asset in css fonts js images .htaccess favicon.ico apple-touch-icon.png robots.txt; do
+    target="$PUBLIC_HTML/$asset"
+    # Ne remplace que si ce n'est pas déjà un lien symbolique à jour, et jamais
+    # un vrai dossier/fichier qu'on écraserait sans le vouloir silencieusement.
+    if [ -e "$APP_DIR/public/$asset" ] && [ ! -L "$target" ]; then
+      rm -rf "$target"
+    fi
+    if [ -e "$APP_DIR/public/$asset" ]; then
+      ln -sfn "$APP_DIR/public/$asset" "$target"
+    fi
+  done
+  ok "Liens css/fonts/js/images/.htaccess/favicon/robots.txt → public/"
 fi
 
 # Lien de stockage interne (inoffensif ; utile si Document Root = fdf/public)

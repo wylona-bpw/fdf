@@ -22,9 +22,8 @@
     <meta name="twitter:description" content="@yield('description', setting('site_description', 'Association humanitaire a but non lucratif. Avec la foi, tout est possible.'))">
     <meta name="twitter:image" content="{{ asset('images/logo-amfdf-512.png') }}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="preload" href="{{ asset('fonts/dm-sans-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('fonts/playfair-display-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="128x128" href="{{ asset('images/logo-amfdf-128.png') }}">
