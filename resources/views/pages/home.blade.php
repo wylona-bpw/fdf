@@ -89,7 +89,9 @@
                         <a href="{{ route('actions') }}"
                            class="group relative col-span-2 sm:col-span-1 aspect-[4/5] overflow-hidden rounded-2xl
                                   shadow-2xl hover:shadow-brand-gold/20 hover:shadow-2xl transition-all duration-500">
-                            <x-photo-placeholder ratio="aspect-[4/5]" variant="blue" rounded="" label="Nos actions" />
+                            <img src="{{ asset('storage/gallery/orphelinat-misericorde-divine-2026/distribution-17.jpg') }}"
+                                 alt="Distribution de denrées alimentaires à l'orphelinat La Miséricorde Divine"
+                                 class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dk via-brand-blue-dk/40 to-transparent opacity-90"></div>
                             <div class="absolute inset-0 flex flex-col justify-end p-6">
                                 <span class="text-brand-gold-lt text-xs font-bold uppercase tracking-wider mb-1">Découvrir</span>
@@ -109,7 +111,9 @@
                            class="group relative aspect-square overflow-hidden rounded-2xl shadow-xl
                                   hover:shadow-brand-gold/20 hover:shadow-2xl transition-all duration-500
                                   hidden sm:block">
-                            <x-photo-placeholder ratio="aspect-square" variant="blue" rounded="" label="L'équipe" />
+                            <img src="{{ asset('images/team/equipe-france-01.jpg') }}"
+                                 alt="Équipe France du Mouvement des Femmes de Foi"
+                                 class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dk via-brand-blue-dk/30 to-transparent opacity-90"></div>
                             <div class="absolute inset-0 flex flex-col justify-end p-5">
                                 <span class="text-brand-gold-lt text-xs font-bold uppercase tracking-wider mb-1">L'asso</span>
@@ -122,7 +126,9 @@
                            class="group relative aspect-square overflow-hidden rounded-2xl shadow-xl
                                   hover:shadow-brand-gold/20 hover:shadow-2xl transition-all duration-500
                                   hidden sm:block">
-                            <x-photo-placeholder ratio="aspect-square" variant="blue" rounded="" label="Galerie" />
+                            <img src="{{ asset('storage/gallery/orphelinat-misericorde-divine-2026/equipe-cameroun-02.jpg') }}"
+                                 alt="Mission au Cameroun — galerie photo"
+                                 class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dk via-brand-blue-dk/30 to-transparent opacity-90"></div>
                             <div class="absolute inset-0 flex flex-col justify-end p-5">
                                 <span class="text-brand-gold-lt text-xs font-bold uppercase tracking-wider mb-1">Galerie</span>
@@ -131,11 +137,11 @@
                         </a>
                     </div>
 
-                    {{-- Badge flottant "150+ familles aidées" --}}
+                    {{-- Badge flottant "X enfants aidés" --}}
                     <div class="hidden sm:block absolute -bottom-6 -left-6 bg-brand-gold text-brand-blue-dk
                                 px-5 py-3 rounded-2xl shadow-2xl rotate-[-4deg] z-10">
-                        <div class="text-2xl font-display font-bold leading-none">150+</div>
-                        <div class="text-xs font-bold uppercase tracking-wider mt-1">familles aidées</div>
+                        <div class="text-2xl font-display font-bold leading-none">{{ setting('stat_people_helped', '50') }}</div>
+                        <div class="text-xs font-bold uppercase tracking-wider mt-1">enfants aidés</div>
                     </div>
                 </div>
             </div>
@@ -159,10 +165,10 @@
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 @php
                     $statsData = [
-                        ['icon' => 'users',  'value' => '150+', 'label' => 'Familles aidées'],
-                        ['icon' => 'heart',  'value' => '50+',  'label' => 'Bénévoles actifs'],
-                        ['icon' => 'box',    'value' => '12',   'label' => 'Actions menées'],
-                        ['icon' => 'globe',  'value' => '5',    'label' => 'Pays touchés'],
+                        ['icon' => 'users',  'value' => setting('stat_people_helped', '50'), 'label' => 'Enfants aidés'],
+                        ['icon' => 'heart',  'value' => setting('stat_volunteers', '20'),    'label' => 'Bénévoles actifs'],
+                        ['icon' => 'box',    'value' => setting('stat_actions', '3'),         'label' => 'Actions menées'],
+                        ['icon' => 'globe',  'value' => setting('stat_countries', '2'),       'label' => 'Pays touchés'],
                     ];
                     $statIcons = [
                         'users'  => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
@@ -198,15 +204,30 @@
     </section>
 
     {{-- ════════════════════════════════════════════════════════════
-         🆕 DERNIÈRE MISSION — sentiment d'asso vivante
+         DERNIÈRE MISSION — sentiment d'asso vivante
          ════════════════════════════════════════════════════════════ --}}
-    <x-latest-mission :mission="$latestMission ?? null" />
+    @php
+        $latestAlbum = $albums->first() ?? null;
+        $latestMission = $latestAlbum ? [
+            'title' => $latestAlbum->title,
+            'kicker' => ($latestAlbum->event_date?->isoFormat('MMMM YYYY') ?? '') . ($latestAlbum->location ? ' · ' . $latestAlbum->location : ''),
+            'description' => $latestAlbum->description,
+            'photo' => 'storage/' . $latestAlbum->cover_image,
+            'stats' => [
+                ['value' => setting('stat_people_helped', '50'), 'label' => 'enfants accompagnés'],
+                ['value' => $latestAlbum->items_count, 'label' => 'photos & vidéos'],
+                ['value' => setting('stat_volunteers', '20'), 'label' => 'bénévoles mobilisés'],
+            ],
+            'href' => route('gallery.show', $latestAlbum->slug),
+        ] : null;
+    @endphp
+    <x-latest-mission :mission="$latestMission" />
 
     {{-- ════════════════════════════════════════════════════════════
-         🆕 CAMPAGNE ACTIVE — urgence + conversion
-         (s'affiche uniquement si une campagne active existe)
+         CAMPAGNE ACTIVE — urgence + conversion
+         (s'affiche uniquement si une campagne active existe en base)
          ════════════════════════════════════════════════════════════ --}}
-    <x-active-campaign :campaign="$activeCampaign ?? null" :demo="true" />
+    <x-active-campaign :campaign="$activeCampaign ?? null" />
 
     {{-- ════════════════════════════════════════════════════════════
          QUI SOMMES-NOUS
@@ -250,7 +271,9 @@
 
                 {{-- Photo équipe --}}
                 <div class="relative">
-                    <x-photo-placeholder ratio="aspect-[4/3]" label="Photo de l'équipe" variant="default" />
+                    <img src="{{ asset('images/team/equipe-france-02.jpg') }}"
+                         alt="Équipe du Mouvement des Femmes de Foi"
+                         class="w-full aspect-[4/3] object-cover rounded-2xl shadow-xl" loading="lazy">
                     {{-- Badge décoratif --}}
                     <div class="absolute -bottom-5 -right-5 bg-white shadow-2xl rounded-xl p-4 hidden sm:block">
                         <div class="flex items-center gap-3">
@@ -261,7 +284,7 @@
                             </div>
                             <div>
                                 <div class="text-xs text-ink-grey">Depuis</div>
-                                <div class="font-display font-bold text-brand-blue-dk">2020</div>
+                                <div class="font-display font-bold text-brand-blue-dk">2025</div>
                             </div>
                         </div>
                     </div>
@@ -294,7 +317,7 @@
                     title="Distribution alimentaire"
                     subtitle="Familles & personnes âgées"
                     description="Denrées de première nécessité distribuées chaque mois aux familles en difficulté."
-                    href="/actions/distribution-alimentaire" />
+                    href="{{ route('actions') }}" />
 
                 <x-action-card
                     icon="book"
@@ -302,7 +325,7 @@
                     title="Fournitures scolaires"
                     subtitle="Enfants orphelins"
                     description="Cartables, cahiers, stylos — nous équipons les enfants pour leur scolarité."
-                    href="/actions/fournitures-scolaires" />
+                    href="{{ route('actions') }}" />
 
                 <x-action-card
                     icon="shopping-bag"
@@ -310,7 +333,7 @@
                     title="Vêtements"
                     subtitle="Toute personne vulnérable"
                     description="Collecte et distribution de vêtements sans distinction."
-                    href="/actions/vetements" />
+                    href="{{ route('actions') }}" />
 
                 <x-action-card
                     icon="hand"
@@ -318,7 +341,7 @@
                     title="Accompagnement moral"
                     subtitle="Veuves & personnes isolées"
                     description="Visites, écoute et présence pour rompre la solitude."
-                    href="/actions/accompagnement-moral" />
+                    href="{{ route('actions') }}" />
 
                 <x-action-card
                     icon="smile"
@@ -326,7 +349,7 @@
                     title="Soutien au handicap"
                     subtitle="Personnes en situation de handicap"
                     description="Aide matérielle et accompagnement au quotidien."
-                    href="/actions/soutien-handicap" />
+                    href="{{ route('actions') }}" />
 
                 <x-action-card
                     icon="heart"
@@ -334,7 +357,7 @@
                     title="Solidarité internationale"
                     subtitle="Communautés locales"
                     description="Opérations de solidarité dans les pays d'origine et au-delà."
-                    href="/actions/solidarite-internationale" />
+                    href="{{ route('actions') }}" />
             </div>
 
             {{-- CTA "Voir toutes les actions" --}}
@@ -368,36 +391,22 @@
                 </p>
             </div>
 
-            {{-- Grille de 4 albums --}}
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-                <x-mission-card
-                    title="Distribution fournitures"
-                    location="Yaoundé"
-                    date="Mai 2026"
-                    href="/galerie/distribution-mai-2026"
-                    :photoCount="24" />
-
-                <x-mission-card
-                    title="Visite des aînées"
-                    location="Paris"
-                    date="Avril 2026"
-                    href="/galerie/visite-aines-avril-2026"
-                    :photoCount="18" />
-
-                <x-mission-card
-                    title="Rencontre bénévoles"
-                    location="Lyon"
-                    date="Mars 2026"
-                    href="/galerie/rencontre-mars-2026"
-                    :photoCount="32" />
-
-                <x-mission-card
-                    title="Distribution vêtements"
-                    location="Marseille"
-                    date="Février 2026"
-                    href="/galerie/vetements-fevrier-2026"
-                    :photoCount="15" />
+            {{-- Grille des albums réels --}}
+            @if($albums->count())
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
+                @foreach($albums as $album)
+                    <x-mission-card
+                        title="{{ $album->title }}"
+                        location="{{ $album->location }}"
+                        date="{{ $album->event_date?->isoFormat('MMMM YYYY') }}"
+                        photo="storage/{{ $album->cover_image }}"
+                        :href="route('gallery.show', $album->slug)"
+                        :photoCount="$album->items_count" />
+                @endforeach
             </div>
+            @else
+            <p class="text-center text-ink-grey">La galerie sera bientôt disponible.</p>
+            @endif
 
             {{-- CTA --}}
             <div class="text-center mt-12">
@@ -409,8 +418,9 @@
     </section>
 
     {{-- ════════════════════════════════════════════════════════════
-         TÉMOIGNAGES — avec slots photo et liens
+         TÉMOIGNAGES — n'apparaît que si des témoignages réels existent
          ════════════════════════════════════════════════════════════ --}}
+    @if($testimonials->isNotEmpty())
     <section class="bg-paper-gold/40 py-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -422,36 +432,25 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <x-testimonial-card
-                    quote="Rejoindre le mouvement a transformé ma vision du monde. Ensemble, nous faisons vraiment la différence pour les familles dans le besoin."
-                    name="Marie Kouam"
-                    role="Bénévole"
-                    location="Paris"
-                    href="/temoignages/marie-kouam" />
-
-                <x-testimonial-card
-                    quote="Grâce à l'association, nos enfants ont pu reprendre l'école avec des fournitures neuves. Nous sommes infiniment reconnaissants."
-                    name="Famille Ndongo"
-                    role="Bénéficiaire"
-                    location="Yaoundé"
-                    href="/temoignages/famille-ndongo" />
-
-                <x-testimonial-card
-                    quote="Le Mouvement des Femmes de Foi est un modèle de générosité. Leur foi se traduit en actes concrets chaque jour."
-                    name="Pasteur Jean M."
-                    role="Partenaire"
-                    location="Lyon"
-                    href="/temoignages/pasteur-jean" />
+                @foreach($testimonials as $testimonial)
+                    <x-testimonial-card
+                        quote="{{ $testimonial->content }}"
+                        name="{{ $testimonial->name }}"
+                        role="{{ $testimonial->role }}"
+                        :photo="$testimonial->photo"
+                        href="{{ route('testimonials.index') }}" />
+                @endforeach
             </div>
 
             {{-- CTA --}}
             <div class="text-center mt-12">
-                <x-teaser-link href="/temoignages">
+                <x-teaser-link :href="route('testimonials.index')">
                     Lire tous les témoignages
                 </x-teaser-link>
             </div>
         </div>
     </section>
+    @endif
 
     {{-- ════════════════════════════════════════════════════════════
          NOS VALEURS — réorganisé en 3+2 (au lieu de 5 en ligne)
@@ -566,7 +565,7 @@
 
             {{-- CTA principal vers la page Transparence --}}
             <div class="text-center mt-10">
-                <x-teaser-link href="/transparence">
+                <x-teaser-link :href="route('transparency')">
                     Comprendre l'utilisation des dons
                 </x-teaser-link>
             </div>

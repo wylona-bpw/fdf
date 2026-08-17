@@ -34,8 +34,13 @@
                 <div class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4" @click.self="lightbox = null" @keydown.escape.window="lightbox = null">
                     <button @click="lightbox = null" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
                     @foreach($album->items as $i => $item)
-                    <img x-show="lightbox === {{ $i }}" src="{{ $item->url }}" alt="{{ $item->caption }}"
-                         class="max-w-full max-h-[85vh] rounded-lg object-contain">
+                        @if($item->is_video)
+                        <video x-show="lightbox === {{ $i }}" src="{{ $item->url }}" controls playsinline
+                               class="max-w-full max-h-[85vh] rounded-lg"></video>
+                        @else
+                        <img x-show="lightbox === {{ $i }}" src="{{ $item->url }}" alt="{{ $item->caption }}"
+                             class="max-w-full max-h-[85vh] rounded-lg object-contain">
+                        @endif
                     @endforeach
                     <button @click="lightbox = Math.max(0, lightbox - 1)" class="absolute left-4 text-white text-4xl">&lsaquo;</button>
                     <button @click="lightbox = Math.min({{ count($album->items) - 1 }}, lightbox + 1)" class="absolute right-4 text-white text-4xl">&rsaquo;</button>

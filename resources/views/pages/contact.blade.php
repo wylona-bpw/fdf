@@ -50,12 +50,16 @@
                 <p>{{ setting('email', 'contact@amfdf.org') }}</p>
             </div>
             <div>
-                <h3 class="font-semibold text-ink-dark mb-1">Localisation</h3>
-                <p>{{ setting('address', 'France / International') }}</p>
+                <h3 class="font-semibold text-ink-dark mb-1">T&eacute;l&eacute;phone / WhatsApp</h3>
+                @if(setting('whatsapp_number'))
+                <p><a href="https://wa.me/{{ setting('whatsapp_number') }}" class="hover:text-brand-blue transition" target="_blank">{{ setting('phone') }}</a></p>
+                @else
+                <p>{{ setting('phone', '—') }}</p>
+                @endif
             </div>
             <div>
-                <h3 class="font-semibold text-ink-dark mb-1">R&eacute;seaux sociaux</h3>
-                <p>Facebook &bull; Instagram &bull; WhatsApp</p>
+                <h3 class="font-semibold text-ink-dark mb-1">Localisation</h3>
+                <p>{{ setting('address', 'France / International') }}</p>
             </div>
         </div>
     </div>

@@ -1,2 +1,7 @@
 *
 !.gitignore
+
+# Médias réels de missions (versionnés volontairement pour être disponibles
+# dès le premier déploiement, sans re-upload manuel via l'admin Filament)
+!gallery/
+!gallery/**

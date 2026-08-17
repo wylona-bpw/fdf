@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\Page;
 
 class PageController extends Controller
@@ -17,6 +18,12 @@ class PageController extends Controller
             default       => 'pages.default',
         };
 
-        return view($view, compact('page'));
+        $data = compact('page');
+
+        if ($page->template === 'actions') {
+            $data['albums'] = Album::published()->ordered()->take(4)->get();
+        }
+
+        return view($view, $data);
     }
 }
