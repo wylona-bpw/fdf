@@ -47,6 +47,8 @@
                     <li><a href="{{ route('actions') }}" class="hover:text-brand-gold-lt transition">Nos actions</a></li>
                     <li><a href="{{ route('articles.index') }}" class="hover:text-brand-gold-lt transition">Actualit&eacute;s</a></li>
                     <li><a href="{{ route('gallery.index') }}" class="hover:text-brand-gold-lt transition">Galerie</a></li>
+                    <li><a href="{{ route('transparency') }}" class="hover:text-brand-gold-lt transition">Transparence</a></li>
+                    <li><a href="{{ route('testimonials.index') }}" class="hover:text-brand-gold-lt transition">T&eacute;moignages</a></li>
                     <li><a href="{{ route('volunteer.create') }}" class="hover:text-brand-gold-lt transition">Devenir b&eacute;n&eacute;vole</a></li>
                     <li><a href="{{ route('donate') }}" class="hover:text-brand-gold-lt transition font-semibold text-brand-gold">Faire un don</a></li>
                 </ul>
