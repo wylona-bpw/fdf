@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Mail\NewVolunteerApplication;
 use App\Models\Volunteer;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class VolunteerController extends Controller
@@ -37,10 +39,13 @@ class VolunteerController extends Controller
         }
         unset($data['country_other'], $data['consent']);
 
-        Volunteer::create($data);
+        $volunteer = Volunteer::create($data);
 
-        // Notification admin (optionnel)
-        // Mail::to(Setting::get('email'))->send(new \App\Mail\NewVolunteer($data));
+        try {
+            Mail::to(setting('email'))->send(new NewVolunteerApplication($volunteer));
+        } catch (\Throwable $e) {
+            Log::warning('Échec de l\'envoi du mail de notification bénévolat : ' . $e->getMessage());
+        }
 
         return back()->with('success', 'Merci pour votre engagement ! Nous vous recontacterons très vite.');
     }

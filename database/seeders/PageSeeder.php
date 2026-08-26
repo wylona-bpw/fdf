@@ -54,7 +54,7 @@ HTML,
                 'sort_order' => 5,
                 'meta_description' => "Témoignages des bénévoles et bénéficiaires du Mouvement des Femmes de Foi.",
                 'body' => <<<'HTML'
-<p>Les témoignages de nos bénévoles et bénéficiaires seront publiés ici au fil de nos missions. Vous êtes bénévole ou bénéficiaire du Mouvement des Femmes de Foi et souhaitez partager votre expérience ? <a href="mailto:femmedefoi.mdfd@gmail.com">Écrivez-nous</a>.</p>
+<p>Les témoignages de nos bénévoles et bénéficiaires seront publiés ici au fil de nos missions. Vous êtes bénévole ou bénéficiaire du Mouvement des Femmes de Foi et souhaitez partager votre expérience ? <a href="mailto:contact@amfdf.org">Écrivez-nous</a>.</p>
 HTML,
             ],
             [
@@ -68,7 +68,7 @@ HTML,
 Association loi 1901<br>
 Numéro RNA : W784011796<br>
 Siège social : 31 boulevard d'Alembert, 78280 Guyancourt, France<br>
-E-mail : femmedefoi.mdfd@gmail.com<br>
+E-mail : contact@amfdf.org<br>
 Téléphone : 07 46 20 23 53</p>
 
 <h2>Hébergement</h2>
@@ -91,7 +91,7 @@ HTML,
 <p>Vos données sont conservées le temps nécessaire au traitement de votre demande et ne sont ni vendues, ni cédées à des tiers.</p>
 
 <h2>Vos droits</h2>
-<p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à l'adresse femmedefoi.mdfd@gmail.com.</p>
+<p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à l'adresse contact@amfdf.org.</p>
 
 <h2>Cookies</h2>
 <p>Ce site peut utiliser des cookies techniques nécessaires à son bon fonctionnement. Aucun cookie publicitaire n'est déposé sans votre consentement.</p>

@@ -4,9 +4,11 @@
     données ($albums, $testimonials) ou disparaît si elles sont vides.
 
     Fournies par HomeController :
-        $albums       : Album::published() (le plus récent alimente aussi "Dernière mission")
-        $testimonials : Testimonial::published() (section masquée si vide)
-        $articles     : Article::published() (non affiché ici, réservé à /actualites)
+        $albums         : Album::published() (le plus récent alimente aussi "Dernière mission")
+        $testimonials   : Testimonial::published() (section masquée si vide)
+        $articles       : Article::published() (non affiché ici, réservé à /actualites)
+        $activeCampaign : Campaign::active() (section masquée si aucune campagne active)
+        $upcomingEvents : Event::published()->upcoming() (section masquée si aucun événement à venir)
 --}}
 @extends('layouts.app')
 
@@ -213,6 +215,32 @@
          (s'affiche uniquement si une campagne active existe en base)
          ════════════════════════════════════════════════════════════ --}}
     <x-active-campaign :campaign="$activeCampaign ?? null" />
+
+    {{-- ════════════════════════════════════════════════════════════
+         PROCHAINS ÉVÉNEMENTS
+         (s'affiche uniquement s'il existe au moins un événement à venir)
+         ════════════════════════════════════════════════════════════ --}}
+    @if(($upcomingEvents ?? collect())->isNotEmpty())
+    <section class="bg-white py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <x-section-header kicker="Ne les manquez pas" title="Prochains événements"
+                subtitle="Rejoignez-nous lors de nos prochains rendez-vous." />
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+                @foreach($upcomingEvents as $event)
+                    <x-event-card :event="$event" />
+                @endforeach
+            </div>
+
+            <div class="text-center mt-12">
+                <x-teaser-link :href="route('events.index')">
+                    Voir tous les événements
+                </x-teaser-link>
+            </div>
+        </div>
+    </section>
+    @endif
 
     {{-- ════════════════════════════════════════════════════════════
          QUI SOMMES-NOUS

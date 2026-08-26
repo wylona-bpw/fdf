@@ -19,7 +19,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'rna_number',        'value' => 'W784011796', 'group' => 'legal', 'type' => 'text', 'label' => "Numéro RNA (répertoire national des associations)"],
 
             // Contact
-            ['key' => 'email',             'value' => 'femmedefoi.mdfd@gmail.com',   'group' => 'contact', 'type' => 'email', 'label' => 'E-mail principal'],
+            ['key' => 'email',             'value' => 'contact@amfdf.org',   'group' => 'contact', 'type' => 'email', 'label' => 'E-mail principal'],
             ['key' => 'phone',             'value' => '07 46 20 23 53',   'group' => 'contact', 'type' => 'text',  'label' => 'Téléphone'],
             ['key' => 'address',           'value' => "31 boulevard d'Alembert, 78280 Guyancourt, France", 'group' => 'contact', 'type' => 'textarea', 'label' => 'Adresse'],
 

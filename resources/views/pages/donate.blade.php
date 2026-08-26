@@ -5,8 +5,22 @@
 @section('content')
 <x-page-hero title="Faire un don" subtitle="Chaque don compte et change des vies" />
 
+@php
+    $campaignContext = request('campaign')
+        ? \App\Models\Campaign::active()->where('slug', request('campaign'))->first()
+        : null;
+@endphp
+
 <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        @if($campaignContext)
+        <div class="inline-flex items-center gap-2 mb-8 px-5 py-2.5 bg-paper-gold rounded-full text-sm">
+            <span class="text-ink-grey">Vous soutenez :</span>
+            <strong class="text-brand-blue-dk">{{ $campaignContext->title }}</strong>
+        </div>
+        @endif
+
         <div class="prose prose-lg mx-auto prose-headings:font-display prose-headings:text-brand-blue mb-10">
             @if($page->body)
                 {!! $page->body !!}

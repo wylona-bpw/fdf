@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\ContactController;
@@ -51,6 +52,14 @@ Route::get('/actualites/{slug}',  [ArticleController::class, 'show'])->name('art
 */
 Route::get('/galerie',         [GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/galerie/{slug}',  [GalleryController::class, 'show'])->name('gallery.show');
+
+/*
+|--------------------------------------------------------------------------
+| Événements
+|--------------------------------------------------------------------------
+*/
+Route::get('/evenements',         [EventController::class, 'index'])->name('events.index');
+Route::get('/evenements/{slug}',  [EventController::class, 'show'])->name('events.show');
 
 /*
 |--------------------------------------------------------------------------

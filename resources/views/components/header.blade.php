@@ -5,6 +5,7 @@
         ['route' => 'actions',         'label' => 'Nos actions'],
         ['route' => 'transparency',    'label' => 'Impact'],
         ['route' => 'articles.index',  'label' => 'Actualités'],
+        ['route' => 'events.index',    'label' => 'Événements'],
         ['route' => 'gallery.index',   'label' => 'Galerie'],
         ['route' => 'contact.create',  'label' => 'Contact'],
     ];

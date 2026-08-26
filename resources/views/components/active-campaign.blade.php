@@ -1,24 +1,10 @@
 {{--
     Section "Campagne active" — crée l'urgence et le mécanisme de conversion.
-    Section s'affiche UNIQUEMENT si une campagne est active.
+    Section s'affiche UNIQUEMENT si une campagne active existe en base
+    (voir App\Models\Campaign, alimentée par HomeController::index()).
 
     Usage:
         <x-active-campaign :campaign="$activeCampaign" />
-
-    Structure attendue:
-        $activeCampaign = [
-            'title' => 'Cantine scolaire de Yaoundé',
-            'description' => 'Permettre à 50 enfants...',
-            'photo' => 'images/campaigns/cantine.jpg',
-            'goal' => 5000,
-            'raised' => 3650,
-            'donors' => 87,
-            'days_left' => 27,
-            'href' => route('donate', ['campaign' => 'cantine-yaounde']),
-            'currency' => '€',
-        ];
-
-    Si null, la section ne s'affiche pas.
 --}}
 @props([
     'campaign' => null,
@@ -27,8 +13,8 @@
 @php
     if (!$campaign) return;
 
-    $percent = min(100, round(($campaign['raised'] / max(1, $campaign['goal'])) * 100));
-    $currency = $campaign['currency'] ?? '€';
+    $percent = $campaign->percent_raised;
+    $currency = '€';
 @endphp
 
 <section class="bg-gradient-to-br from-brand-blue-dk via-brand-blue to-brand-blue-dk py-16 lg:py-20 relative overflow-hidden">
@@ -63,9 +49,9 @@
 
             {{-- Photo (40%) --}}
             <div class="lg:col-span-5">
-                @if(!empty($campaign['photo']))
-                    <img src="{{ asset($campaign['photo']) }}"
-                         alt="{{ $campaign['title'] }}"
+                @if($campaign->cover_url)
+                    <img src="{{ $campaign->cover_url }}"
+                         alt="{{ $campaign->title }}"
                          class="w-full aspect-[4/3] object-cover rounded-2xl shadow-xl">
                 @else
                     <x-photo-placeholder ratio="aspect-[4/3]" label="Photo de la campagne" variant="blue" />
@@ -76,18 +62,20 @@
             <div class="lg:col-span-7 text-white">
 
                 <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 leading-tight">
-                    {{ $campaign['title'] }}
+                    {{ $campaign->title }}
                 </h2>
 
+                @if($campaign->description)
                 <p class="text-white/70 leading-relaxed mb-7">
-                    {{ $campaign['description'] }}
+                    {{ $campaign->description }}
                 </p>
+                @endif
 
                 {{-- Stats : collecté / objectif --}}
                 <div class="flex items-baseline justify-between mb-2">
                     <div>
                         <span class="font-display text-3xl sm:text-4xl font-bold text-brand-gold">
-                            {{ number_format($campaign['raised'], 0, ',', ' ') }}{{ $currency }}
+                            {{ number_format((float) $campaign->raised_amount, 0, ',', ' ') }}{{ $currency }}
                         </span>
                         <span class="text-white/60 text-sm ml-1">
                             collectés
@@ -95,7 +83,7 @@
                     </div>
                     <div class="text-right">
                         <div class="text-white text-sm font-semibold">
-                            sur {{ number_format($campaign['goal'], 0, ',', ' ') }}{{ $currency }}
+                            sur {{ number_format((float) $campaign->goal_amount, 0, ',', ' ') }}{{ $currency }}
                         </div>
                         <div class="text-brand-gold-lt text-xs font-bold mt-0.5">
                             {{ $percent }}% atteint
@@ -119,18 +107,20 @@
                         <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
-                        <span><strong class="text-white">{{ $campaign['donors'] }}</strong> donateurs</span>
+                        <span><strong class="text-white">{{ $campaign->donors_count }}</strong> donateurs</span>
                     </div>
+                    @if(!is_null($campaign->days_left))
                     <div class="flex items-center gap-2 text-white/80">
                         <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span><strong class="text-white">{{ $campaign['days_left'] }}</strong> jours restants</span>
+                        <span><strong class="text-white">{{ $campaign->days_left }}</strong> jours restants</span>
                     </div>
+                    @endif
                 </div>
 
                 {{-- CTA principal --}}
-                <a href="{{ $campaign['href'] }}"
+                <a href="{{ route('donate', ['campaign' => $campaign->slug]) }}"
                    class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto
                           px-8 py-4 bg-brand-gold text-brand-blue-dk font-bold rounded-lg
                           hover:bg-brand-gold-lt transition shadow-xl hover:shadow-2xl
