@@ -1,7 +1,7 @@
 @php
     $navItems = [
         ['route' => 'home',            'label' => 'Accueil'],
-        ['route' => 'association',     'label' => 'Qui sommes-nous'],
+        ['route' => 'association',     'label' => 'L\'association'],
         ['route' => 'actions',         'label' => 'Nos actions'],
         ['route' => 'transparency',    'label' => 'Impact'],
         ['route' => 'articles.index',  'label' => 'Actualités'],
@@ -9,6 +9,11 @@
         ['route' => 'gallery.index',   'label' => 'Galerie'],
         ['route' => 'contact.create',  'label' => 'Contact'],
     ];
+
+    // Le menu desktop garde 7 entrées maximum pour ne pas déborder à partir
+    // de 1024px (cf. audit UI/UX 2026 §6.2 "nav ciblée") — "Impact" reste
+    // accessible en menu mobile et depuis plusieurs endroits de la home.
+    $desktopNavItems = array_values(array_filter($navItems, fn ($item) => $item['route'] !== 'transparency'));
 @endphp
 <header class="bg-brand-blue sticky top-0 z-50 shadow-lg">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -25,23 +30,23 @@
                      loading="eager">
                 <span class="flex flex-col leading-tight">
                     <span class="text-brand-gold font-display text-xl lg:text-2xl font-bold tracking-tight">AMFDF</span>
-                    <span class="hidden sm:block text-white/80 text-xs lg:text-sm font-light mt-0.5">Mouvement des Femmes de Foi</span>
+                    <span class="hidden xl:block text-white/80 text-xs lg:text-sm font-light mt-0.5">Mouvement des Femmes de Foi</span>
                 </span>
             </a>
 
             <!-- Desktop nav -->
-            <div class="hidden lg:flex items-center gap-1">
-                @foreach($navItems as $item)
+            <div class="hidden lg:flex items-center">
+                @foreach($desktopNavItems as $item)
                     <a href="{{ route($item['route']) }}"
                        @if(request()->routeIs($item['route'])) aria-current="page" @endif
-                       class="px-3 py-2 text-sm text-white/90 hover:text-brand-gold-lt transition font-medium">{{ $item['label'] }}</a>
+                       class="px-2.5 xl:px-3 py-2 text-[13px] xl:text-sm text-white/90 hover:text-brand-gold-lt transition font-medium whitespace-nowrap">{{ $item['label'] }}</a>
                 @endforeach
             </div>
 
             <!-- Desktop CTAs -->
-            <div class="hidden lg:flex items-center gap-3">
-                <x-button :href="route('volunteer.create')" variant="secondary" size="sm">Nous rejoindre</x-button>
-                <x-button :href="route('donate')" variant="primary" size="sm">Faire un don</x-button>
+            <div class="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
+                <x-button :href="route('volunteer.create')" variant="secondary" size="sm" class="whitespace-nowrap">Nous rejoindre</x-button>
+                <x-button :href="route('donate')" variant="primary" size="sm" class="whitespace-nowrap">Faire un don</x-button>
             </div>
 
             <!-- Mobile toggle -->
